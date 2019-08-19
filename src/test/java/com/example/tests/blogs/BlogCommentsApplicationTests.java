@@ -76,10 +76,10 @@ public class BlogCommentsApplicationTests extends AbstractBlogCommentsTest {
 
 	@Test
 	public void updateComment() throws Exception {
-		String uri = "/comments/4";
+		String uri = "/comments/1";
 		Comment comment = new Comment();
 		comment.setTitle("Comment X");
-		comment.setContent("Comment 4");
+		comment.setContent("Comment 1");
 		String inputJson = super.mapToJson(comment);
 		MvcResult mvcResult = mockMvc.perform(
 				MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
@@ -89,12 +89,12 @@ public class BlogCommentsApplicationTests extends AbstractBlogCommentsTest {
 		assertEquals(200, status);
 		String content = mvcResult.getResponse().getContentAsString();
 		Comment commentJson = mapFromJson(content, Comment.class);
-		assertEquals(commentJson.getContent(), "Comment 4");
+		assertEquals(commentJson.getContent(), "Comment 1");
 	}
 
 	@Test
 	public void deleteComment() throws Exception {
-		String uri = "/comments/4";
+		String uri = "/comments/1";
 		MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
